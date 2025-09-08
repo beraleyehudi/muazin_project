@@ -14,6 +14,7 @@ class DataRetrievalService:
         self._manager = DataRetrievalHelper
 
 
+
     def send_metadata(self):
 
         for entry in os.listdir(self._directory_path):

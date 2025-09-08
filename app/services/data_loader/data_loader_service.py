@@ -1,3 +1,5 @@
+from app.services.logging.logger import Logger
+
 from app.connections import Consumer
 from app.connections.elasticsearch.elasticsearch_connection import ElasticConnection
 from app.connections.mongo_db.mongo_connection import MongoConnection
@@ -16,6 +18,7 @@ class DataLoaderService:
         self._consumer = Consumer(self._kafka_read_topic)
         self._elastic_dal = ElasticDal(ElasticConnection.get_connection())
         self._mongo_dal = MongoDal(MongoConnection())
+        self._logger = Logger.get_logger()
 
 
     def insert_to_mongo(self, unique_id, file_path):
