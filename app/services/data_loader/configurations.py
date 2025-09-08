@@ -1,0 +1,3 @@
+KAFKA_READ_TOPIC = 'Audio_metadata'
+ELASTIC_MAPPING = ''
+COLLECTION_NAME = 'Audio'
