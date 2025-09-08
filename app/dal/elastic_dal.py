@@ -3,7 +3,7 @@ from elasticsearch import Elasticsearch
 
 class ElasticDal:
     def __init__(self, es:ElasticConnection):
-        self._es = es
+        self._es = es.get_connection()
 
 
 
@@ -16,7 +16,7 @@ class ElasticDal:
     #     self._es.indices.refresh(index=index)
 
     def insert_document(self, index, id, document):
-        self._es.index(index=index, id=id,body=document)
+        self._es.index(index=index, id=id ,body=document)
 
 
 
