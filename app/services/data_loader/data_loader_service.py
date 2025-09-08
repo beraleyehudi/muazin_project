@@ -19,8 +19,8 @@ class DataLoaderService:
 
 
     def insert_to_mongo(self, unique_id, file_path):
-        proper_mongo_object = self._helper.convert_audio_to_mongo_proper_object(file_path)
-        document = {'id': unique_id, 'audio': proper_mongo_object}
+        audio_by_bytes = self._helper.audio_to_bytes(file_path)
+        document = {'_id': unique_id, 'audio': audio_by_bytes}
         self._mongo_dal.insert_document(self._collection_name, document)
 
 

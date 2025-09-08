@@ -1,1 +1,1 @@
-from mongo_dal import MongoDal
+from .mongo_dal import MongoDal
