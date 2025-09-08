@@ -3,7 +3,7 @@ import os
 import datetime
 
 
-class DataRetrievalManager:
+class DataRetrievalHelper:
 
     @staticmethod
     def get_specific_metadata(file_path):
