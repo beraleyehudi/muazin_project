@@ -2,9 +2,10 @@ from app.connections.elasticsearch.elasticsearch_connection import ElasticConnec
 from elasticsearch import Elasticsearch
 
 class ElasticDal:
-    def __init__(self, es:ElasticConnection, index, mapping = None):
+    def __init__(self, es:ElasticConnection):
         self._es = es
-        self.create_index(index, mapping)
+
+
 
 
     def create_index(self, index, body = None):
@@ -15,7 +16,7 @@ class ElasticDal:
     #     self._es.indices.refresh(index=index)
 
     def insert_document(self, index, document):
-        pass
+        self._es.index(index=index, body=document)
 
 
 

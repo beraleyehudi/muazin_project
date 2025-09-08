@@ -14,7 +14,7 @@ class DataLoaderService:
         self._elastic_mapping = ELASTIC_MAPPING
         self._collection_name = COLLECTION_NAME
         self._consumer = Consumer(self._kafka_read_topic)
-        self._elastic_dal = ElasticDal(ElasticConnection.get_connection(), self._collection_name, self._elastic_mapping)
+        self._elastic_dal = ElasticDal(ElasticConnection.get_connection())
         self._mongo_dal = MongoDal(MongoConnection())
 
 
@@ -26,6 +26,7 @@ class DataLoaderService:
 
 
     def insert_into_elastic(self, document):
+        self._elastic_dal.create_index(self._collection_name, self._elastic_mapping)
         self._elastic_dal.insert_document(self._collection_name, document)
 
     def load_data(self):
