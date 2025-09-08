@@ -15,8 +15,8 @@ class ElasticDal:
     # def refresh_index(self, index):
     #     self._es.indices.refresh(index=index)
 
-    def insert_document(self, index, document):
-        self._es.index(index=index, body=document)
+    def insert_document(self, index, id, document):
+        self._es.index(index=index, id=id,body=document)
 
 
 

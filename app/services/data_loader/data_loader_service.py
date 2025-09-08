@@ -25,16 +25,15 @@ class DataLoaderService:
 
 
 
-    def insert_into_elastic(self, document):
+    def insert_into_elastic(self, unique_id, document):
         self._elastic_dal.create_index(self._collection_name, self._elastic_mapping)
-        self._elastic_dal.insert_document(self._collection_name, document)
+        self._elastic_dal.insert_document(self._collection_name, unique_id, document)
 
     def load_data(self):
         for message in self._consumer.get_consumed_messages():
             document = message.value
             unique_id = self._helper.calculate_unique_id(document)
-            document['id'] = unique_id
-            self.insert_into_elastic(document)
+            self.insert_into_elastic(document, unique_id)
             self.insert_to_mongo(unique_id, document.get('path'))
 
 
