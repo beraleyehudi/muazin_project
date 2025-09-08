@@ -1,7 +1,7 @@
 from importlib.metadata import metadata
 import os
 #
-# from app.models import Producer
+# from app.connections import Producer
 from app.services.data_retrieval.conigurations import JSON_SCHEMA, KAFKA_TOPIC, DIRECTORY_PATH
 from app.services.data_retrieval.data_retrieval_manager import DataRetrievalManager
 
