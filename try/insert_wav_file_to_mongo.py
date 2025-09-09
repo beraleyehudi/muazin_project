@@ -24,19 +24,19 @@ db = client["muazin"]
 fs = gridfs.GridFS(db)
 
 # Path to your WAV file
-wav_file_path = r'C:\Users\User\Desktop\podcasts\download (4).wav'
-def insert_by_gridfs():
-
-    try:
-        with open(wav_file_path, 'rb') as f:
-            # Put the file into GridFS
-            file_id = fs.put(f)
-            print(f"Large WAV file inserted with GridFS file_id: {file_id}")
-
-    except FileNotFoundError:
-        print(f"Error: WAV file not found at {wav_file_path}")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+wav_file_path = r'C:\Users\User\Desktop\podcasts\download (8).wav'
+# def insert_by_gridfs():
+#
+#     try:
+#         with open(wav_file_path, 'rb') as f:
+#             # Put the file into GridFS
+#             file_id = fs.put(f)
+#             print(f"Large WAV file inserted with GridFS file_id: {file_id}")
+#
+#     except FileNotFoundError:
+#         print(f"Error: WAV file not found at {wav_file_path}")
+#     except Exception as e:
+#         print(f"An error occurred: {e}")
 
 def audio_to_bytes():
     # return 'rereer'

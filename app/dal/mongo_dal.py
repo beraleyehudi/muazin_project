@@ -11,3 +11,7 @@ class MongoDal:
         self.db.get_db_collection(collection_name).insert_one(document)
         # document['_id'] = str(result.inserted_id)
         # return document
+
+    def get_all_documents(self, collection_name):
+        """List all tweets in the database."""
+        return self.db.get_db_collection(collection_name).find().to_list()
