@@ -1,16 +1,25 @@
-class SSTHelper:
+import speech_recognition as sr
+
+class STTHelper:
     def __init__(self):
-        self._temp_file_path = r'temp\audio_file number 0'
-        self._serial_number = 0
+        self._r = sr.Recognizer()
 
-
-    def write_bytes_to_wav(self,data_bytes):
-        self._temp_file_path = self._temp_file_path.replace(str(self._serial_number), str(self._serial_number + 1))
-        with open(self._temp_file_path, 'wb') as f:
+    @staticmethod
+    def write_bytes_to_wav(path, data_bytes):
+        with open(path, 'wb') as f:
             f.write(data_bytes)
-        self._serial_number += 1
-        pass
 
-    def text_from_speach(self, data_bytes) -> str:
-        self.write_bytes_to_wav(data_bytes)
-        pass
+
+    def text_from_speach(self, _id, data_bytes) -> str:
+        path = _id+'.wav'
+        self.write_bytes_to_wav(path, data_bytes)
+        with sr.AudioFile(path) as source:
+            audio_data = self._r.record(source)  # Read the entire audio file
+
+        # Perform speech recognition using Google Web Speech API
+        text = self._r.recognize_google(audio_data)
+        return text
+
+
+
+
