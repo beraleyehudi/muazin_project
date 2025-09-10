@@ -3,8 +3,8 @@ from app.connections.mongo_db.mongo_connection import MongoConnection
 
 
 class MongoDal:
-    def __init__(self, db):
-        self.db = db
+    def __init__(self, db:MongoConnection):
+        self.db = db.get_db()
 
 
     def insert_document(self, collection_name, document):
