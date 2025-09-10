@@ -22,6 +22,10 @@ class ElasticDal:
         update_data = {'doc':update_data}
         response = self._es.update(index=index, id=document_id, body=update_data)
 
+    def get_all_document(self, index) -> list:
+        res = self._es.search(index=index, body={'query': {'match_all': {}}})
+        return [doc['_source'] for doc in res['hits']['hits']]
+
 
 
 

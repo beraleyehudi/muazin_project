@@ -5,11 +5,13 @@ my_index = 'test'
 document = {'name':'berale', 'age':'24'}
 # es.indices.delete(index=my_index)
 # es.indices.create(index=my_index)
-print(es.index(index='test', id='25', document=document))
+print(es.index(index='test', id='27', document=document))
 
-res = es.search(index=my_index, body={'query':{'match':{'name': 'berale'}}})
+res = es.search(index=my_index, body={'query':{'match_all':{}}})
 for hit in res['hits']['hits']:
     print(f'source: {hit['_source']}')
+
+print([doc['_source'] for doc in res['hits']['hits']])
 
 def update_document(index, document_id, update_data):
     update_data = {'doc': update_data}

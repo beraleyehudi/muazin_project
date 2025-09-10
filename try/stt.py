@@ -7,7 +7,7 @@ r = sr.Recognizer()
 audio_file_path = r'C:\Users\User\Desktop\podcasts\download (4).wav'  # Make sure you have a 'sample.wav' file in the same directory
 
 try:
-    with sr.AudioFile(r'C:\Users\User\Desktop\podcasts\download (4).wav') as source:
+    with sr.AudioFile(r'C:\Users\User\Desktop\podcasts\download (10).wav') as source:
         print("Processing audio...")
         audio_data = r.record(source)  # Read the entire audio file
 
