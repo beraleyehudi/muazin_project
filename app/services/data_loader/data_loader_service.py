@@ -35,7 +35,7 @@ class DataLoaderService:
             document = message.value
             unique_id = self._helper.calculate_unique_id(document)
             self.insert_into_elastic(document, unique_id)
-            # self.insert_to_mongo(unique_id, document.get('path'))
+            self.insert_to_mongo(unique_id, document.get('path'))
 
 DataLoaderService().load_data()
 

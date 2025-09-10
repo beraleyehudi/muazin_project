@@ -4,7 +4,7 @@ es = Elasticsearch('http://localhost:9200')
 my_index = 'test'
 document = {'name':'berale', 'age':'24'}
 # es.indices.delete(index=my_index)
-es.indices.create(index=my_index)
+# es.indices.create(index=my_index)
 print(es.index(index='test', id='22', body=document))
 
 # class ElasticConnection:

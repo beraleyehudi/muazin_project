@@ -24,7 +24,7 @@ db = client["muazin"]
 fs = gridfs.GridFS(db)
 
 # Path to your WAV file
-wav_file_path = r'C:\Users\User\Desktop\podcasts\download (8).wav'
+wav_file_path = r'C:\Users\User\Desktop\podcasts\download (1).wav'
 # def insert_by_gridfs():
 #
 #     try:
@@ -59,9 +59,11 @@ def get_specific_metadata(file_path):
     return data_json
 
 
-
+db = MongoConnection.get_db()
 coll = db["audio"]
-coll.insert_one({'_id':calculate_unique_id(get_specific_metadata(wav_file_path)), 'data':audio_to_bytes()})
+# coll.insert_one({'_id':calculate_unique_id(get_specific_metadata(wav_file_path)), 'data':audio_to_bytes()})
+coll.insert_one({'a':'b', 'c':'d'})
+print(list(coll.find()))
 
 # print(dict(coll.find()))
 # for doc in coll.find():

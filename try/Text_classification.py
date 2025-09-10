@@ -62,4 +62,4 @@ def new_shape(bank, text):
 
 print(performances_and_variety(two, my))
 print(new_shape(one, my))
-print(calculate(one, two, my))
+print(calculate(one, two, concatenation))
