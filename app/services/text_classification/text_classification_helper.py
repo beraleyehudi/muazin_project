@@ -28,10 +28,10 @@ class TextClassificationHelper:
         dic = {}
 
         for word_from_bank in bank:
-            performances = re.findall(rf'\b{word_from_bank}\b', text)
+            performances = re.findall(rf'\b{word_from_bank}\b', text.lower())
             if performances:
-                variety_counter += 1
                 performance_counter += len(performances)
+                variety_counter += 1
 
         dic['performances_precent'] = performance_counter / len(text.split())
         dic['variety_precent'] = variety_counter / len(bank)
@@ -39,12 +39,12 @@ class TextClassificationHelper:
 
 
     def calculate_text_classification(self, text) -> float:
-        hostile_words_1_data = TextClassificationHelper.performances_and_variety(self._word_bank_1, text)
-        hostile_words_2_data = TextClassificationHelper.performances_and_variety(self._word_bank_2, text)
+        dangerous_vocabulary_data = TextClassificationHelper.performances_and_variety(self._dangerous_vocabulary, text)
+        very_dangerous_vocabulary_data = TextClassificationHelper.performances_and_variety(self._dangerous_vocabulary, text)
 
-        percentage_of_dangerous_words_performances = hostile_words_1_data['performances_precent'] + \
-                                                     hostile_words_2_data['performances_precent']
-        performance_diversity_percentage = hostile_words_1_data['variety_precent'] * hostile_words_2_data[
+        words_performances_precent = dangerous_vocabulary_data['performances_precent']/2 + \
+                                                     very_dangerous_vocabulary_data['performances_precent']
+        performance_diversity_percent = dangerous_vocabulary_data['variety_precent'] * very_dangerous_vocabulary_data[
             'variety_precent']
-        return performance_diversity_percentage
+        return words_performances_precent * performance_diversity_percent
 

@@ -20,12 +20,12 @@ def performances_and_variety(hostile_words, text) :
 
     dic['performances_precent'] = counter/len(text.split())
     dic['variety_precent'] = len(lis) / len(hostile_words)
-    return dic, counter
+    return dic
 
 
 def calculate(hostile_words_1, hostile_words_2, text):
-    hostile_words_1_data = performances_and_variety(hostile_words_1, text)
-    hostile_words_2_data = performances_and_variety(hostile_words_2, text)
+    hostile_words_1_data = new_shape(hostile_words_1, text)
+    hostile_words_2_data = new_shape(hostile_words_2, text)
 
     percentage_of_dangerous_words_performances = hostile_words_1_data['performances_precent']/2 + hostile_words_2_data['performances_precent']
     performance_diversity_percentage = hostile_words_1_data['variety_precent'] * hostile_words_2_data['variety_precent']
@@ -57,8 +57,9 @@ def new_shape(bank, text):
 
     dic['performances_precent'] = performance_counter / len(text.split())
     dic['variety_precent'] = variety_counter / len(bank)
-    return dic, performance_counter
+    return dic
 
 
 print(performances_and_variety(two, my))
-print(new_shape(two, my))
+print(new_shape(one, my))
+print(calculate(one, two, my))
