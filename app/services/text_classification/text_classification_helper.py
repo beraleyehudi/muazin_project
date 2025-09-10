@@ -5,8 +5,8 @@ class TextClassificationHelper:
     def __init__(self):
         self._base64_dangerous_vocabulary = "RnJlZWRvbSBGbG90aWxsYSxSZXNpc3RhbmNlLExpYmVyYXRpb24sRnJlZSBQYWxlc3RpbmUsR2F6YSxDZWFzZWZpcmUsUHJvdGVzdCxVTlJXQQ=="
         self._base64_very_dangerous_vocabulary = "R2Vub2NpZGUsV2FyIENyaW1lcyxBcGFydGhlaWQsTWFzc2FjcmUsTmFrYmEsRGlzcGxhY2VtZW50LEh1bWFuaXRhcmlhbiBDcmlzaXMsQmxvY2thZGUsT2NjdXBhdGlvbixSZWZ1Z2VlcyxJQ0MsQkRT"
-        self._dangerous_vocabulary = TextClassificationHelper.decrypt_base_64(self._base64_dangerous_vocabulary).lower().split(',')
-        self._very_dangerous_vocabulary = TextClassificationHelper.decrypt_base_64(self._base64_very_dangerous_vocabulary).lower().split(',')
+        self._dangerous_vocabulary = TextClassificationHelper.decoded_base_64(self._base64_dangerous_vocabulary).lower().split(',')
+        self._very_dangerous_vocabulary = TextClassificationHelper.decoded_base_64(self._base64_very_dangerous_vocabulary).lower().split(',')
 
 
     @staticmethod
