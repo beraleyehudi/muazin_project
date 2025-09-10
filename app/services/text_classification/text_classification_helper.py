@@ -14,12 +14,22 @@ class TextClassificationHelper:
         return base64.b64decode(encoded_string).decode()
 
 
+    @staticmethod
+    def classification_by_category(score) -> str:
+        result = None
+        if score < 0.005:
+            result = 'none'
+        elif score > 0.007:
+            result = 'high'
+        else:
+            result = 'medium'
+        return result
 
-    def classification_by_category(self, score) -> str:
-        pass
 
-    def is_risk(self, score):
-        pass
+
+    @staticmethod
+    def is_risk(score):
+        return True if score >= 0.005 else False
 
     @staticmethod
     def performances_and_variety(bank:list, text:str) -> dict:
