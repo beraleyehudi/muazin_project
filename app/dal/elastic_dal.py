@@ -10,7 +10,8 @@ class ElasticDal:
 
     def create_index(self, index, body = None):
         self._es.indices.delete(index=index)
-        self._es.indices.create(index=index, body=body)
+        print(self._es.indices.create(index=index))
+
 
     # def refresh_index(self, index):
     #     self._es.indices.refresh(index=index)

@@ -14,7 +14,7 @@ class DataLoaderService:
         self._elastic_mapping = ELASTIC_MAPPING
         self._collection_name = COLLECTION_NAME
         self._consumer = Consumer(self._kafka_read_topic)
-        self._elastic_dal = ElasticDal(ElasticConnection.get_connection())
+        self._elastic_dal = ElasticDal(ElasticConnection())
         self._mongo_dal = MongoDal(MongoConnection())
 
 
@@ -31,11 +31,13 @@ class DataLoaderService:
 
     def load_data(self):
         for message in self._consumer.get_consumed_messages():
+            print('some')
             document = message.value
             unique_id = self._helper.calculate_unique_id(document)
             self.insert_into_elastic(document, unique_id)
-            self.insert_to_mongo(unique_id, document.get('path'))
+            # self.insert_to_mongo(unique_id, document.get('path'))
 
+DataLoaderService().load_data()
 
 
 

@@ -1,5 +1,6 @@
 import json
 from kafka import KafkaProducer
+from sympy.core.evalf import evalf_exp
 
 
 class Producer:
@@ -12,5 +13,8 @@ class Producer:
                                      json.dumps(x, default=str).encode('utf-8'))
 
     def publish_massage(self, topic, msg):
-        self._client.send(topic, msg)
-        self._client.flush()
+        try:
+            self._client.send(topic, msg)
+            self._client.flush()
+        except:
+            print('failed')

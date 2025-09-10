@@ -1,13 +1,18 @@
 import re
+import base64
 class TextClassificationHelper:
 
     def __init__(self):
-        self._word_bank_1 = None
-        self._word_bank_2 = None
+        self._base64_dangerous_vocabulary = "RnJlZWRvbSBGbG90aWxsYSxSZXNpc3RhbmNlLExpYmVyYXRpb24sRnJlZSBQYWxlc3RpbmUsR2F6YSxDZWFzZWZpcmUsUHJvdGVzdCxVTlJXQQ=="
+        self._base64_very_dangerous_vocabulary = "R2Vub2NpZGUsV2FyIENyaW1lcyxBcGFydGhlaWQsTWFzc2FjcmUsTmFrYmEsRGlzcGxhY2VtZW50LEh1bWFuaXRhcmlhbiBDcmlzaXMsQmxvY2thZGUsT2NjdXBhdGlvbixSZWZ1Z2VlcyxJQ0MsQkRT"
+        self._dangerous_vocabulary = TextClassificationHelper.decrypt_base_64(self._base64_dangerous_vocabulary).lower().split(',')
+        self._very_dangerous_vocabulary = TextClassificationHelper.decrypt_base_64(self._base64_very_dangerous_vocabulary).lower().split(',')
+
 
     @staticmethod
-    def decrypt_base_64(base_64_text) -> str:
-        pass
+    def decoded_base_64(encoded_string) -> str:
+        return base64.b64decode(encoded_string).decode()
+
 
 
     def classification_by_category(self, score) -> str:
