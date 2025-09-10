@@ -10,6 +10,7 @@ class TextClassificationService:
         self._helper = TextClassificationHelper()
 
 
+
     def add_risk_field(self, doc_id, score):
         is_bds = self._helper.is_risk(score)
         self._elastic_dal.update_document(self._index_name, doc_id, is_bds)

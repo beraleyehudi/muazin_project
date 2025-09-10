@@ -1,3 +1,4 @@
+import re
 class TextClassificationHelper:
 
     def __init__(self):
@@ -16,18 +17,19 @@ class TextClassificationHelper:
         pass
 
     @staticmethod
-    def performances_and_variety(hostile_words, text) -> dict:
-        counter = 0
-        lis = []
-        dic = {'performances_precent': 0, 'variety_precent': 0}
-        for i in text.split(','):
-            if f'{i}' in hostile_words:
-                counter += 1
-                if not f'{i}' in lis:
-                    lis.append(i)
+    def performances_and_variety(bank:list, text:str) -> dict:
+        performance_counter = 0
+        variety_counter = 0
+        dic = {}
 
-        dic['performances_precent'] = counter / len(text.split(','))
-        dic['variety_precent'] = len(lis) / len(hostile_words)
+        for word_from_bank in bank:
+            performances = re.findall(rf'\b{word_from_bank}\b', text)
+            if performances:
+                variety_counter += 1
+                performance_counter += len(performances)
+
+        dic['performances_precent'] = performance_counter / len(text.split())
+        dic['variety_precent'] = variety_counter / len(bank)
         return dic
 
 
